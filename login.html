@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Bowlvana - Acai Your Way!</title>
+    
+    <!-- External Resources -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="login.css" rel="stylesheet">
+    
+    <!-- Favicon Settings -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo1.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo1.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo1.png">
+</head>
+<body>
+    <!-- Animated Background Shapes -->
+    <div class="background-shapes">
+        <div class="shape" style="width:300px;height:300px;top:-10%;left:20%;animation-delay:0s"></div>
+        <div class="shape" style="width:400px;height:400px;top:60%;left:60%;animation-delay:-5s"></div>
+        <div class="shape" style="width:200px;height:200px;top:30%;left:80%;animation-delay:-10s"></div>
+    </div>
+
+    <!-- Main Login Container -->
+    <div class="login-container">
+        <!-- Error Overlay for Maximum Attempts -->
+        <div class="error-overlay" id="errorOverlay">
+            <div class="error-content">
+                <i class="fas fa-exclamation-circle"></i>
+                <h2>Login Unsuccessful</h2>
+                <p>You have exceeded the maximum number of login attempts.</p>
+                <p>Please try again in <span id="cooldownTimer">30</span> minutes.</p>
+            </div>
+        </div>
+
+        <!-- Attempt Counter -->
+        <div class="attempt-counter">
+            Attempts remaining: <span id="attemptsLeft">3</span>
+        </div>
+        
+        <!-- Brand Logo and Title -->
+        <div class="brand-logo">
+            <div class="bowl-icon">
+                <div class="bowl-base">
+                    <div class="bowl-ripple"></div>
+                </div>
+            </div>
+            <h1 class="logo-text">Bowlvana</h1>
+            <p class="logo-subtitle">Add your touch – the Bowlvana way!</p>
+        </div>
+
+        <!-- Error Message Display -->
+        <div id="errorMessage" class="message">
+            <i class="fas fa-exclamation-circle"></i>
+            <span id="errorText"></span>
+        </div>
+        
+        <!-- Success Message Display -->
+        <div id="successMessage" class="message">
+            <i class="fas fa-check-circle"></i>
+            Ready to bowl away your hunger?
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" novalidate>
+            <!-- Username Input -->
+            <div class="form-group">
+                <div class="input-group">
+                    <i class="fas fa-user input-icon"></i>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        placeholder="Enter your username"
+                        required
+                    >
+                </div>
+            </div>
+
+            <!-- Password Input -->
+            <div class="form-group">
+                <div class="input-group">
+                    <i class="fas fa-lock input-icon"></i>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        placeholder="Enter your password (min. 8 characters)"
+                        required
+                        minlength="8"
+                    >
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="login-btn">
+                Açaí What You Did There!
+            </button>
+        </form>
+    </div>
+
+    <!-- Authentication and Form Handling Script -->
+    <script>
+        // Authentication Configuration
+        const VALID_CREDENTIALS = {
+            username: 'admin',
+            password: 'Password123'
+        };
+        const MAX_ATTEMPTS = 3;
+
+        // Initialize Variables
+        let loginAttempts = 0;
+        const loginForm = document.getElementById('loginForm');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+        const attemptsLeft = document.getElementById('attemptsLeft');
+
+        /**
+         * Handle form submission and authentication
+         */
+        loginForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Get form inputs
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+
+            // Reset message displays
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+
+            // Validate inputs
+            if (!username || !password) {
+                errorMessage.style.display = 'flex';
+                errorMessage.querySelector('#errorText').textContent = 
+                    'Please enter both username and password';
+                return;
+            }
+
+            // Authenticate credentials
+            if (username === VALID_CREDENTIALS.username && 
+                password === VALID_CREDENTIALS.password) {
+                // Set login state
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userData', JSON.stringify({
+                    username: username,
+                    email: 'admin@bowlvana.com',
+                    memberSince: 'November 1, 2024'
+                }));
+                
+                // Show success message
+                successMessage.style.display = 'flex';
+                
+                // Redirect after delay
+                setTimeout(() => {
+                    window.location.href = 'account.html';
+                }, 1000);
+            } else {
+                // Handle failed attempt
+                loginAttempts++;
+                attemptsLeft.textContent = MAX_ATTEMPTS - loginAttempts;
+                
+                // Check for maximum attempts
+                if (loginAttempts >= MAX_ATTEMPTS) {
+                    // Show maximum attempts error
+                    errorMessage.style.display = 'flex';
+                    errorMessage.querySelector('#errorText').textContent = 
+                        'Maximum login attempts exceeded. Please try again later.';
+                    
+                    // Disable form temporarily
+                    loginForm.style.opacity = '0.5';
+                    loginForm.style.pointerEvents = 'none';
+                    
+                    // Reset after timeout
+                    setTimeout(() => {
+                        loginAttempts = 0;
+                        attemptsLeft.textContent = MAX_ATTEMPTS;
+                        loginForm.style.opacity = '1';
+                        loginForm.style.pointerEvents = 'auto';
+                        errorMessage.style.display = 'none';
+                    }, 30 * 60 * 1000); // 30 minutes
+                } else {
+                    // Show invalid credentials error
+                    errorMessage.style.display = 'flex';
+                    errorMessage.querySelector('#errorText').textContent = 
+                        `Invalid username or password. ${MAX_ATTEMPTS - loginAttempts} attempts remaining`;
+                }
+            }
+        });
+
+        // Check lockout status on page load
+        document.addEventListener('DOMContentLoaded', checkLockout);
+    </script>
+</body>
+</html>

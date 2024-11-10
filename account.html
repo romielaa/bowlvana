@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>My Account - Bowlvana</title>
+    
+    <!-- External Font Resources -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Favicon Settings -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo1.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo1.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo1.png">
+    <!-- Link to CSS file -->
+    <link rel="stylesheet" href="account.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <nav class="nav">
+            <!-- Logo and Brand -->
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo1.png" alt="Bowlvana Logo">
+                <h2>Bowlvana</h2>
+            </a>
+            <!-- Navigation Menu -->
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="aboutus.html">About Us</a>
+                <a href="account.html" class="account-link">
+                    <i class="fas fa-user"></i>
+                </a>
+                <a href="cart.html" class="cart-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </nav>
+        </nav>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="account-container">
+        <!-- Account Header -->
+        <div class="account-header">
+            <h1>My Account</h1>
+            <p>Welcome back to Bowlvana!</p>
+        </div>
+
+        <!-- Account Information Card -->
+        <div class="account-card">
+            <div class="profile-section">
+                <!-- Profile Avatar -->
+                <div class="profile-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <!-- Profile Information -->
+                <div class="profile-info">
+                    <h2>Profile Information</h2>
+                    <div class="info-group">
+                        <label>Username</label>
+                        <p id="userUsername">admin</p>
+                    </div>
+                    <div class="info-group">
+                        <label>Email</label>
+                        <p id="userEmail">admin@bowlvana.com</p>
+                    </div>
+                    <div class="info-group">
+                        <label>Member Since</label>
+                        <p id="memberSince">November 1, 2024</p>
+                    </div>
+                </div>
+            </div>
+<!-- Account Actions Section -->
+<div class="account-actions">
+    <button class="action-button">
+        <i class="fas fa-edit"></i>
+        Edit Profile
+    </button>
+    <button class="action-button">
+        <i class="fas fa-history"></i>
+        Order History
+    </button>
+    <button class="action-button logout-button" onclick="handleLogout()">
+        <i class="fas fa-sign-out-alt"></i>
+        Logout
+    </button>
+</div>
+</div>
+</main>
+
+<!-- JavaScript for Account Management -->
+<script>
+// Check login status when page loads
+function checkLogin() {
+if (!localStorage.getItem('isLoggedIn')) {
+    window.location.href = 'login.html';
+}
+}
+
+// Handle logout process
+function handleLogout() {
+localStorage.removeItem('isLoggedIn');
+window.location.href = 'login.html';
+}
+
+// Check login status when page loads
+document.addEventListener('DOMContentLoaded', checkLogin);
+
+// Initialize account functionality
+function initializeAccount() {
+if (!localStorage.getItem('isLoggedIn')) {
+    window.location.href = 'login.html';
+    return;
+}
+
+// Load and display user data
+try {
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    if (userData) {
+        document.getElementById('userUsername').textContent = userData.username;
+        document.getElementById('userEmail').textContent = userData.email;
+        document.getElementById('memberSince').textContent = userData.memberSince;
+    }
+} catch (error) {
+    console.error('Error loading user data:', error);
+}
+
+// Add click handlers for action buttons
+document.querySelectorAll('.action-button').forEach(button => {
+    button.addEventListener('click', handleButtonClick);
+});
+}
+
+// Handle button clicks
+function handleButtonClick(e) {
+const buttonType = e.currentTarget.textContent.trim();
+
+switch (buttonType) {
+    case 'Edit Profile':
+        alert('Edit profile functionality coming soon!');
+        break;
+    case 'Order History':
+        alert('Order history functionality coming soon!');
+        break;
+    case 'Logout':
+        handleLogout();
+        break;
+}
+}
+
+// Initialize the account page when DOM is fully loaded
+document.addEventListener('DOMContentLoaded', initializeAccount);
+</script>
+</body>
+</html>

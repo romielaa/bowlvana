@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Document Head: Contains meta information, title, and resource links -->
+<head>
+    <!-- Basic meta tags for character encoding and responsive viewport -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - Bowlvana</title>
+    
+    <!-- External Resources Section -->
+    <!-- Google Fonts: Bodoni Moda and Playfair Display for typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Internal Stylesheets -->
+    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="menu.css">
+    
+    <!-- Favicon Configuration: Multiple sizes for different devices -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo1.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo1.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo1.png">
+</head>
+
+<!-- Deferred loading of cart functionality script -->
+<script src="cart.js" defer></script>
+
+<body>
+    <!-- Header Section: Contains navigation and branding -->
+    <header class="header">
+        <!-- Logo and Brand Name -->
+        <a href="index.html" class="logo">
+            <img src="assets/images/logo1.png" alt="Bowlvana Logo">
+            <h2>Bowlvana</h2>
+        </a>
+        <!-- Navigation Menu -->
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="aboutus.html">About Us</a>
+            <!-- User Account Icon -->
+            <a href="account.html" class="account-link">
+                <i class="fas fa-user"></i>
+            </a>
+            <!-- Shopping Cart Icon with Counter -->
+            <a href="cart.html" class="cart-link">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </a>
+        </nav>
+    </header>
+
+    <!-- Main Content Container -->
+    <div class="container gradient-bg">
+        <!-- Return to Menu Link -->
+        <div class="menu-link">
+            <a href="menu.html" class="continue-shopping hover-effect">
+                &#8592; Continue Shopping
+            </a>
+        </div>
+    
+        <!-- Cart Items Section -->
+        <h2 class="section-title">Your Cart</h2>
+        <!-- Dynamic container for cart items -->
+        <div id="cart-items-container"></div>
+        <!-- Empty cart message - shown when cart is empty -->
+        <div id="empty-cart-message" class="empty-cart-message">
+            Your cart is empty! Browse our menu and Açaí Away!
+        </div>
+    
+        <!-- Order Summary Section -->
+        <div class="order-summary">
+            <h2 class="section-title">Order Summary</h2>
+            <!-- Delivery Area Selection Dropdown -->
+            <select id="delivery-area" class="input-box">
+                <option value="">Select Delivery Area</option>
+                <option value="st-james">St.James</option>
+                <option value="trelawny">Trelawny</option>
+                <option value="st-ann">St. Ann</option>
+                <option value="westmoreland">Westmoreland</option>
+                <option value="hanover">Hanover</option>
+            </select>
+            
+            <!-- Payment Method Selection -->
+            <fieldset id="payment-method">
+                <legend>Select Payment Method</legend>
+                <label><input type="radio" name="payment" value="electronic"> Electronic Payment</label>
+                <label><input type="radio" name="payment" value="credit-card"> Credit Card</label>
+                <label><input type="radio" name="payment" value="debit-card"> Debit Card</label>
+                <label><input type="radio" name="payment" value="cash"> Cash</label>
+            </fieldset>
+
+            <!-- Price Breakdown Section -->
+            <div class="price-breakdown">
+                <div class="price-row">
+                    <span>Subtotal</span>
+                    <span>J$0.00</span>
+                </div>
+                <div class="price-row">
+                    <span>Tax (15%)</span>
+                    <span>J$0.00</span>
+                </div>
+                <div class="price-row total-row">
+                    <span>Total</span>
+                    <span>J$0.00</span>
+                </div>
+            </div>
+
+            <!-- Checkout Button -->
+            <button class="btn-checkout" onclick="proceedToCheckout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Thank You Message Container - Hidden by default -->
+    <div id="thank-you-message" class="thank-you-message" style="display: none;"></div>
+
+    <!-- Checkout Functionality Script -->
+    <script>
+        // Initialize checkout functionality when DOM is fully loaded
+        document.addEventListener("DOMContentLoaded", function () {
+            const checkoutButton = document.querySelector(".btn-checkout");
+            checkoutButton.addEventListener("click", proceedToCheckout);
+        });
+
+        // Handle checkout process
+        function proceedToCheckout() {
+            // Get selected delivery area and payment method
+            const deliveryArea = document.getElementById('delivery-area')?.value;
+            const paymentMethod = document.querySelector('input[name="payment"]:checked')?.value;
+
+            // Validate delivery area selection
+            if (!deliveryArea) {
+                alert('Please select a delivery area.');
+                return;
+            }
+
+            // Validate payment method selection
+            if (!paymentMethod) {
+                alert('Please select a payment method.');
+                return;
+            }
+
+            console.log("Proceeding to checkout...");
+            // TODO: Implement order processing logic
+        }
+    </script>
+</body>
+</html>

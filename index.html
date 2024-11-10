@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bowlvana - Acai Your Way!</title>
+    
+    <!-- External Resources -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <script src="cart.js"></script>
+    
+    <!-- Favicon Settings -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo1.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo1.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo1.png">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <a href="index.html" class="logo">
+            <img src="assets/images/logo1.png" alt="Bowlvana Logo">
+            <h2>Bowlvana</h2>
+        </a>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="aboutus.html">About Us</a>
+            <a href="account.html" class="account-link">
+                <i class="fas fa-user"></i>
+            </a>
+            <a href="cart.html" class="cart-link">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </a>
+        </nav>
+    </header>
+
+    <!-- Hero Banner Section -->
+    <section class="hero-banner">
+        <video class="background-video" autoplay loop muted playsinline>
+            <source src="assets/videos/background.mp4" type="video/mp4">
+        </video>
+        <div class="banner-content">
+            <h1>Welcome to Bowlvana</h1>
+            <p>Where Health Meets Happiness in Every Bowl</p>
+            <div class="highlight">New! Try our signature Berry Merry Bowl</div>
+            <div class="banner-buttons">
+                <a href="menu.html" class="primary-btn">Explore Menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Bowls Section -->
+    <section class="featured-bowls" id="featured">
+        <h2 class="section-title">Featured Bowls</h2>
+        <div class="bowls-grid">
+            <!-- Blue Lagoon Bowl -->
+            <div class="bowl-card">
+                <img src="assets/images/bluelagoon.png" alt="Blue Lagoon" class="bowl-image">
+                <div class="bowl-content">
+                    <h3>Blue Lagoon</h3>
+                    <p>Açaí blend with strawberry,coconut, chia seeds.</p>
+                    <span class="price">J$950.00</span>
+                    <button class="order-btn" onclick="addToCart('Blue Lagoon', 950.00)">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Coral Kiss Bowl -->
+            <div class="bowl-card">
+                <img src="assets/images/coralkiss.png" alt="Coral Kiss" class="bowl-image">
+                <div class="bowl-content">
+                    <h3>Coral Kiss</h3>
+                    <p>Refreshing blend with mango, banana pineapple and blueberry.</p>
+                    <span class="price">$650.00</span>
+                    <button class="order-btn" onclick="addToCart('Coral Kiss', 650.00)">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Markono Bowl -->
+            <div class="bowl-card">
+                <img src="assets/images/markono.png" alt="Markono" class="bowl-image">
+                <div class="bowl-content">
+                    <h3>Markono</h3>
+                    <p>Açaí topped with edible flowers, pomegranate and blueberry.</p>
+                    <span class="price">J$750.00</span>
+                    <button class="order-btn" onclick="addToCart('Markono', 950.00)">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Emerald Dew Bowl -->
+            <div class="bowl-card">
+                <img src="assets/images/emeralddew.png" alt="Emerald Dew" class="bowl-image">
+                <div class="bowl-content">
+                    <h3>Emerald Dew</h3>
+                    <p>Spirulina blend with kiwi, matcha, and flaxseeds.</p>
+                    <span class="price">J$850.00</span>
+                    <button class="order-btn" onclick="addToCart('Emerald Dew', 950.00)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="why-acai">
+        <h2 class="section-title">Why Choose Açaí?</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card hover-pop">
+                <i class="fas fa-heart"></i>
+                <h3>Healthy Choice</h3>
+                <p>Packed with antioxidants, vitamins, and minerals for optimal wellness</p>
+            </div>
+            <div class="benefit-card hover-pop">
+                <i class="fas fa-leaf"></i>
+                <h3>Sustainable Ingredients</h3>
+                <p>Sourced from sustainable farms for a better planet</p>
+            </div>
+            <div class="benefit-card hover-pop">
+                <i class="fas fa-paint-brush"></i>
+                <h3>Deliciously Customizable</h3>
+                <p>Create your perfect bowl with endless toppings</p>
+            </div>
+        </div>
+    </section>
+
+<!-- Customer Reviews Section -->
+<section class="customer-reviews">
+    <h2 class="section-title">Customer Love</h2>
+    <div class="reviews-carousel">
+        <div class="carousel-container">
+            <div class="carousel-track">
+                <!-- First Set of Reviews -->
+                <div class="review-item">
+                    <img src="assets/images/customerlove1.jpeg" alt="Customer Review 1">
+                </div>
+                <div class="review-item">
+                    <img src="assets/images/customerlove2.jpeg" alt="Customer Review 2">
+                </div>
+                <div class="review-item">
+                    <img src="assets/images/customerlove3.jpeg" alt="Customer Review 3">
+                </div>
+                <div class="review-item">
+                    <img src="assets/images/customerlove4.jpeg" alt="Customer Review 4">
+                </div>
+                <div class="review-item">
+                    <img src="assets/images/customerlove5.jpeg" alt="Customer Review 5">
+                </div>
+                
+                <!-- Duplicate Set for Seamless Loop -->
+                <div class="review-item">
+                    <img src="assets/images/customerlove1.jpeg" alt="Customer Review 1">
+                </div>
+                <div class="review-item">
+                    <img src="assets/images/customerlove2.jpeg" alt="Customer Review 2">
+                </div>
+                <div class="review-item">
+                    <img src="assets/images/customerlove3.jpeg" alt="Customer Review 3">
+                </div>
+                <div class="review-item">
+                    <img src="assets/images/customerlove4.jpeg" alt="Customer Review 4">
+                </div>
+                <div class="review-item">
+                    <img src="assets/images/customerlove5.jpeg" alt="Customer Review 5">
+                </div>
+                
+                <!-- Third Set for Smooth Infinite Loop -->
+                <div class="review-item">
+                    <img src="assets/images/customerlove1.jpeg" alt="Customer Review 1">
+                </div>
+                <div class="review-item">
+                    <img src="assets/images/customerlove2.jpeg" alt="Customer Review 2">
+                </div>
+                <div class="review-item">
+                    <img src="assets/images/customerlove3.jpeg" alt="Customer Review 3">
+                </div>
+                <div class="review-item">
+                    <img src="assets/images/customerlove4.jpeg" alt="Customer Review 4">
+                </div>
+                <div class="review-item">
+                    <img src="assets/images/customerlove5.jpeg" alt="Customer Review 5">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer Section -->
+<footer class="footer">
+    <div class="footer-content">
+        <!-- Company Information -->
+        <div class="footer-section company-info">
+            <h3>Bowlvana</h3>
+            <p>Crafting perfect açaí bowls since 2024</p>
+            <div class="social-links">
+                <a href="https://instagram.com/bowlvana" target="_blank" aria-label="Follow us on Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://pinterest.com/bowlvana" target="_blank" aria-label="Follow us on Pinterest">
+                    <i class="fab fa-pinterest"></i>
+                </a>
+                <a href="https://facebook.com/bowlvana" target="_blank" aria-label="Follow us on Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="footer-section">
+            <h3>Contact Us</h3>
+            <ul class="footer-links">
+                <li><i class="fas fa-phone"></i> (876) 344-9461</li>
+                <li><i class="fas fa-envelope"></i> hello@bowlvana.com</li>
+                <li><i class="fas fa-map-marker-alt"></i> Southern Cross, Fairview Montego Bay</li>
+            </ul>
+        </div>
+
+        <!-- Newsletter Signup -->
+        <div class="footer-section">
+            <h3>Newsletter</h3>
+            <p>Subscribe for special offers and updates!</p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Copyright Notice -->
+    <div class="copyright">
+        <p>Copyright © 2024 Bowlvana. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- JavaScript Section -->
+<script>
+    /**
+     * Initialize carousel on page load
+     */
+    document.addEventListener('DOMContentLoaded', function() {
+        const track = document.querySelector('.carousel-track');
+        const items = document.querySelectorAll('.review-item');
+        
+        // Clone items for seamless loop
+        items.forEach(item => {
+            const clone = item.cloneNode(true);
+            track.appendChild(clone);
+        });
+    });
+    /**
+     * Handle newsletter form submission
+     */
+    document.addEventListener('DOMContentLoaded', function() {
+        const newsletterForm = document.getElementById('newsletterForm');
+        const submitButton = newsletterForm.querySelector('button');
+        const emailInput = newsletterForm.querySelector('input');
+
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (emailInput.value) {
+                // Disable form during submission
+                newsletterForm.classList.add('subscribed');
+                
+                // Update button text
+                submitButton.textContent = 'Delivered!';
+                
+                // Clear input field
+                emailInput.value = '';
+                
+                // Reset form after delay
+                setTimeout(() => {
+                    newsletterForm.classList.remove('subscribed');
+                    submitButton.textContent = 'Subscribe';
+                }, 3000);
+            }
+        });
+    });
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+        const modal = document.getElementById('cartModal');
+        if (event.target === modal) {
+            closeCartModal();
+        }
+    }
+</script>
+</body>
+</html>
